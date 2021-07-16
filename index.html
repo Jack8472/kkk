@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalkulator przedterminowej spłaty kredytu konsumenckiego</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+  <div class="w3-container w3-margin">
+      <img src="https://rf.gov.pl/wp-content/uploads/2020/03/rzu-logo.jpg" alt="logo Rzecznika Finansowego"/>
+      <div class="w3-row-padding">
+        <div class="w3-half">
+          <p>
+            Poniższy kalkulator pozwoli wyliczyć kwotę, jaką powinien zwrócić
+            kredytodawca (bank lub instytucja pożyczkowa) w przypadku wcześniejszej
+            spłaty kredytu konsumenckiego. Dotyczy on umów o kredyt konsumencki
+            zawartych od dnia 18 grudnia 2011 r.
+          </p>
+        </div>
+        <div class="w3-half">
+          <p>
+            Przez umowę o kredyt konsumencki rozumie się umowę o kredyt w wysokości
+            nie większej niż 255.550 zł (albo równowartość tej kwoty w walucie innej
+            niż waluta polska). Kredytem konsumenckim jest także kredyt na kwotę
+            wyższą niż wskazana powyżej, o ile kredyt taki jest przeznaczony na remont
+            domu (lokalu mieszkalnego), jeśli nie jest zabezpieczony hipoteką.
+          </p>
+        </div>
+      </div>
+      <h1>Kalkulator przedterminowej spłaty kredytu konsumenckiego</h1>
+    <div class="wrapper">
+      <form class="form w3-card w3-container w3-light-grey" id="daneKredytu">
+          <div class="w3-panel">
+            <label for="dUruchom">Data wypłaty kredytu przez kredytodawcę:</label>
+            <input type="date" id="dUruchom" name="dUruchom" value="2016-01-02" min="2011-12-18" class="w3-input" />
+          </div>
+          <div class="w3-panel">
+            <label for="dUmowa">Termin spłaty ostatniej raty w umowie:</label>
+            <input type="date" id="dUmowa" name="dUmowa" value="2021-04-01" min="2011-12-18" class="w3-input" />
+          </div>
+          <div class="w3-panel">
+            <label for="dSplata">Data faktycznej wcześniejszej spłaty kredytu:</label>
+            <input type="date" id="dSplata" name="dSplata" value="2018-01-02" min="2011-12-18" class="w3-input" />
+          </div>
+        <div class="w3-panel">
+          <label for="prowizja" id="prowizja" name="prowizja">Prowizje i opłaty (za wyjątkiem opłat notarialnych):</label>
+          <input type="number" step="0.01" id="prowizja" name="prowizja" value="1000" class="w3-input" />
+        </div>
+        <div class="w3-panel">
+          <label for="czwrot" id="czwrot" name="czwrot">Kwota częściowo zwrócona przez kredytodawcę (o ile została zwrócona):</label>
+          <input type="number" step="0.01" id="czwrot" name="czwrot" value="0" class="w3-input" />
+        </div>
+        <div class="w3-panel">
+          <input class="w3-button w3-green" type="submit" value="Oblicz" />
+          <input class="w3-button w3-red" type="reset" value="Wyczyść formularz" />
+        </div>
+      </form>
+    </div>
+    <div class="w3-card w3-panel w3-leftbar w3-border-green" id="result"></div>
+    <h2>Co dalej?</h2>
+    <div>
+      <p>
+        Porównaj wynik uzyskany w powyższej kalkulacji i zastanów się, czy
+        kredytodawca w Twojej sprawie wywiązał się z ciążących na nim
+        obowiązków.
+      </p>
+      <p>Jeśli stwierdzisz, że:</p>
+
+      <ul>
+        <li>kredytodawca nie zwrócił Ci kwoty wskazanej w pkt. 4 LUB</li>
+
+        <li>
+          kredytodawca zwrócił Ci jedynie część kwoty wskazanej w pkt 4 LUB
+        </li>
+
+        <li>
+          kredytodawca dokonał zwrotu po terminie wskazanym w pkt 4 i nie
+          zwrócił Ci odsetek należnych za opóźnienie od 15 dnia następującego po
+          całkowitej przedterminowej spłacie do dnia dokonania rozliczenia.
+        </li>
+      </ul>
+        <p> <strong>Ważne!</strong> Powyższe wyliczenia uwzględniają odsetki za cały okres opóźnienia. Jako wierzyciel masz prawo domagać się ich w całości. Jednak dłużnik-kredytodawca może podnieść zarzut przedawnienia. W tym przypadku termin przedawnienia wynosi 3 lata.
+        </p><p>
+          Co to oznacza w praktyce? Załóżmy, że spłaciłeś w całości kredyt przed terminem 4 lata temu. Kredytodawca może podnieść, że uległy przedawnieniu odsetki za okres wcześniejszy niż trzy lata licząc od zgłoszenia przez Ciebie roszczenia. Wtedy zwróci odsetki tylko za ostatnie trzy lata. Odmówi zwrotu odsetek za rok.  Przed zarzutem przedawnienia możesz jednak się bronić zarzutem nadużycia prawa (art. 5 k.c.). Ostateczna ocena należeć będzie do sądu. 
+        </p>
+      <h3>Złożenie reklamacji</h3>
+
+      <p>
+        W pierwszej kolejności powinieneś złożyć do kredytodawcy reklamację. Możesz sporządzić ją samodzielnie lub
+        skorzystać z wzoru przygotowanego przez Rzecznika Finansowego.
+        Wzór ten został podany jedynie dla przykładu. Możesz go edytować i
+        dowolnie zmienić uzupełniając o dodatkową argumentację. Do reklamacji,
+        jako załącznik dodaj Wynik powyższej kalkulacji - załącznik do
+        reklamacji. <a href="https://rf.gov.pl/wp-content/uploads/2020/09/wzor_reklamacji_49_ukk.docx">Pobierz wzór
+          reklamacji.</a></p>
+
+      <p>
+        Miejsce i forma złożenia reklamacji powinny być szczegółowo opisane
+        w umowie zawartej z kredytodawcą. Dane takie znajdziesz również na
+        oficjalnej stronie internetowej kredytodawcy.
+      </p>
+
+      <p>
+        Odpowiedź, na Twoją reklamację powinna zostać udzielona bez zbędnej
+        zwłoki, jednak nie później niż w terminie 30 dni od dnia otrzymania
+        reklamacji (do zachowania terminu wystarczy wysłanie odpowiedzi
+        przed jego upływem). W szczególnie skomplikowanych przypadkach,
+        uniemożliwiających rozpatrzenie reklamacji i udzielenie odpowiedzi w
+        terminie, o którym mowa powyżej, kredytodawca może wydłużyć termin
+        do udzielenia odpowiedzi na reklamację, jednakże odpowiedź ta
+        powinna zostać udzielona najpóźniej w terminie 60 dni od dnia
+        otrzymania reklamacji. Przy czym powinieneś otrzymać dodatkową
+        wiadomość od kredytodawcy, w której kredytodawca ten:
+      </p>
+
+      <ol>
+        <li>wyjaśni przyczynę opóźnienia;</li>
+
+        <li>
+          wskaże okoliczności, które muszą zostać ustalone dla rozpatrzenia
+          sprawy;
+        </li>
+
+        <li>
+          określi przewidywany termin rozpatrzenia reklamacji i udzielenia
+          odpowiedzi.
+        </li>
+      </ol>
+      <h3>Wniosek o interwencję Rzecznika Finansowego</h3>
+      <p>
+        W przypadku, jeśli kredytodawca nie uzna Twoich roszczeń lub też w
+        ogóle nie udzieli odpowiedzi na Twoją reklamację (ewentualnie
+        udzieli takiej odpowiedzi, ale z przekroczeniem powyżej wskazanych
+        terminów) przysługuje Ci prawo do złożenia do Rzecznika Finansowego
+        wniosku o podjęcie działań w Twojej indywidualnej sprawie. Do
+        wniosku do Rzecznika Finansowego należy dołączyć dokumentację
+        sprawy, a w tym umowę zawartą z kredytodawcą i odpowiedź na
+        reklamację, w której kredytodawca odmawia uznania Twoich roszczeń.
+      </p>
+
+      <p>
+        <a href="https://rf.gov.pl/wp-content/uploads/2020/05/Wniosek_interwencja_WBK.docx">
+          Wzór wniosku o interwencję Rzecznika Finansowego w indywidualnej sprawie
+        </a>
+      </p>
+      <h3>Skierowanie sprawy na drogę sądową</h3>
+      <p>
+        Kolejną możliwością jest skierowanie sprawy bezpośrednio do sądu.
+        Trzeba jednak pamiętać, że w toku procesu powstanie konieczność,
+        zgodnie z art. 6 ustawy z dnia 23 kwietnia 1964 r. Kodeks cywilny
+        (Dz.U. z 2019 r. poz. 1145 ze zm.) udowodnienia zasadności
+        roszczenia. Zgodnie bowiem z powołanym przepisem Ciężar udowodnienia
+        faktu spoczywa na osobie, która z faktu tego wywodzi skutki prawne.
+        Z kolei, zgodnie z art. 232 ustawy z dnia 17 listopada 1964 r. –
+        Kodeks postępowania cywilnego (Dz.U. 2019 r. poz. 1460 ze zm.; dalej
+        k.p.c.) Strony są obowiązane wskazywać dowody dla stwierdzenia
+        faktów, z których wywodzą skutki prawne. Sąd może dopuścić dowód nie
+        wskazany przez stronę.
+      </p>
+
+      <p>
+        Rzecznik Finansowy może udzielić Ci dalszej pomocy w postępowaniu
+        sądowym poprzez przedstawienie sądowi oświadczenia zawierającego
+        pogląd istotny dla Twojej sprawy.
+      </p>
+
+      <p>W tym celu możesz postąpić w dwojaki sposób tj.:</p>
+
+      <ol>
+        <li>
+          powołując się na ww. art. 28 ustawy z dnia 5 sierpnia 2015 r. o
+          rozpatrywaniu reklamacji przez podmioty rynku finansowego i o
+          Rzeczniku Finansowym (Dz.U. z 2019 r. poz. 2279 ze zm., dalej:
+          ustawa o Rzeczniku Finansowym) w związku z art. 63 ustawy k.p.c. –
+          zgłosić sądowi wniosek o wezwanie Rzecznika Finansowego do
+          przedstawienia pisemnego
+          <strong>poglądu istotnego dla sprawy</strong>. Wskazane jest, aby
+          taki wniosek został złożony na możliwie wczesnym etapie
+          postępowania – najlepiej w żądaniach pozwu bądź odpowiedzi na
+          pozew. Prawdopodobnie sąd przychylając się do wniosku wystąpi
+          bezpośrednio do Rzecznika o przedstawienie ww. poglądu w sprawie,
+          albo
+        </li>
+
+        <li>
+          wystąpić z wnioskiem bezpośrednio do Rzecznika o przedstawienie
+          sądowi poglądu w Twojej sprawie. Do wniosku kierowanego do
+          Rzecznika Finansowego należy dołączyć kopię akt sprawy – w
+          szczególności pozew, odpowiedź na pozew, umowę zawarta z
+          kredytodawcą, lub inne istotne dokumenty. <a
+            href="https://rf.gov.pl/wp-content/uploads/2020/09/Wniosek_istotny_poglad_uniwersalny_14092020.docx">Wzór
+            wniosku o wydanie istotnego poglądu.</a>
+        </li>
+      </ol>
+      </li>
+      </p>
+    </div>
+
+    <div class="w3-panel w3-border w3-light-grey w3-round-large" id="legalNotice">
+      <p>
+        Niniejszy progam nie używa plików cookie ani nie przetwarza Państwa
+        danych osobowych. Wszystkie operacje na danych dokonywane są lokalnie w
+        Państwa przeglądarce.
+      </p>
+      <p>
+        Podane w kalkulatorze obliczenia dotyczą zwrotu pozaodsetkowych kosztów
+        kredytu w rozumieniu art. 5 pkt 6a ustawy z dnia 12 maja 2011 r. o
+        kredycie konsumenckim. Kwota należnego od kredytodawcy zwrotu
+        pozaodsetkowych kosztów kredytu obliczona została metodą liniową.
+        Otrzymana kwota ma charakter poglądowy. Wyliczenie ostatecznej kwoty
+        zwrotu możliwe jest wyłącznie w oparciu o analizę całości akt sprawy, a
+        w tym łączącej konsumenta z kredytodawcą umowy. Niniejsza kalkulacja nie
+        obejmuje odsetek od kredytu, które zgodnie z treścią art. 5 pkt 6 lit a
+        ustawy o kredycie konsumenckim również wchodzą w skład całkowitego
+        kosztu kredytu. Kwota przedstawiona w Wyniku kalkulacji może różnić się od należnego od kredytodawcy zwrotu z
+        uwagi na okres objęcia ochroną ubezpieczeniową, w przypadku kiedy do pozaodsetkowych kosztów kredytu wliczone
+        były również składki na ubezpieczenie.
+      </p>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>
