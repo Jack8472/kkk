@@ -1,16 +1,16 @@
-    // Copyright 2020-2021 Jakub J. Szczerbowski
-    // This program is free software: you can redistribute it and/or modify
-    // it under the terms of the GNU General Public License as published by
-    // the Free Software Foundation, either version 3 of the License, or
-    // (at your option) any later version.
+// Copyright 2020-2021 Jakub J. Szczerbowski
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
-    // This program is distributed in the hope that it will be useful,
-    // but WITHOUT ANY WARRANTY; without even the implied warranty of
-    // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    // GNU General Public License for more details.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
 
-    // You should have received a copy of the GNU General Public License
-    // along with this program.  If not, see <http://www.gnu.org/licenses/>
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 const wrapper = document.querySelector(".wrapper"),
   form = wrapper.querySelectorAll(".form"),
@@ -76,7 +76,7 @@ function addDays(date, days) {
 }
 
 function mainFunc(e) {
-  e.preventDefault(); 
+  e.preventDefault();
   let formData = new FormData(form[0]);
 
   dUruchom = new Date(formData.get("dUruchom"));
@@ -94,7 +94,7 @@ function mainFunc(e) {
         dUruchom.getMonth(),
         dUruchom.getDate()
       )) /
-      (1000 * 60 * 60 * 24)
+    (1000 * 60 * 60 * 24)
   );
   const terminFaktyczny = Math.floor(
     (Date.UTC(dSplata.getFullYear(), dSplata.getMonth(), dSplata.getDate()) -
@@ -103,7 +103,7 @@ function mainFunc(e) {
         dUruchom.getMonth(),
         dUruchom.getDate()
       )) /
-      (1000 * 60 * 60 * 24)
+    (1000 * 60 * 60 * 24)
   );
 
   const terminWymagalnosci = addDays(dSplata, 14); // uwaga, tak naprawdę to nie jest termin wymagalnosci tylko ostateczny termin zaplaty
@@ -163,11 +163,12 @@ function mainFunc(e) {
         <li>Należne na dzień sporządzenia kalkulacji (${todayStr} r.) odsetki za opóźnienie
          od tej kwoty to: <strong>
          ${kwotaOdsetek.toFixed(2)} zł</strong>.</li>
-        <li></li>
+        <li>Należne na dzień sporządzenia kalkulacji (${todayStr} r.) nieprzedawnione 
+        odsetki za opóźnienie to <strong>______ zł.</strong></li>
         <li>Całkowita kwota do zwrotu to: <strong>
         ${(kwotaOdsetek + kwotaZwrotu).toFixed(2)} 
         zł</strong>.</li></ol>`;
-      }
+}
 
 document.addEventListener(
   "DOMContentLoaded",
