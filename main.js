@@ -12,6 +12,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>
 
+var DateTime = luxon.DateTime;
+
+testd = new DateTime.local()
+console.log(testd.toFormat())
+
 const wrapper = document.querySelector(".wrapper"),
   form = wrapper.querySelectorAll(".form"),
   submitInput = form[0].querySelector('input[type="submit"]');
@@ -75,6 +80,11 @@ function addDays(date, days) {
   return result;
 }
 
+function stripTime(date) {
+  date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  return date;
+}
+
 function mainFunc(e) {
   e.preventDefault();
   let formData = new FormData(form[0]);
@@ -86,6 +96,7 @@ function mainFunc(e) {
   czwrot = new Number(formData.get("czwrot"));
   prowizja = new Number(formData.get("prowizja"));
   today = new Date();
+  today = new Date(today.toDateString());
 
   const terminUmowny = Math.floor(
     (Date.UTC(dUmowa.getFullYear(), dUmowa.getMonth(), dUmowa.getDate()) -
@@ -106,12 +117,19 @@ function mainFunc(e) {
     (1000 * 60 * 60 * 24)
   );
 
-  const terminWymagalnosci = addDays(dSplata, 14); // uwaga, tak naprawdę to nie jest termin wymagalnosci tylko ostateczny termin zaplaty
+  const terminWymagalnosciMinJed = addDays(dSplata, 14); // uwaga, tak naprawdę to nie jest termin wymagalnosci tylko ostateczny termin zaplaty
   const terminPierwszyDzienOdsetk = addDays(dSplata, 15);
+  const data8lipca2018 = new Date("2018-07-08");
+  const trzyLataWstecz = new Date(today.setFullYear(today.getFullYear() - 3))
 
-  // tu należy dodać temrminPierwszyDzienOdetkNieprzed
-  // 
-  // 
+  // termin od którego biegną odsetki nieprzedawnione
+  if (terminPierwszyDzienOdsetk > data8lipca2018) {
+    terminPierwszyDzienOdsetkNieprzed = terminPierwszyDzienOdsetk;
+  }
+  else {
+    //terminPierwszyDzienOdsetkNieprzed = 
+  }
+
   //walidacja
   if (terminFaktyczny < 0 || terminUmowny < 0) {
     alert("Prawdopodobny błąd w jednej z dat.");
@@ -125,6 +143,7 @@ function mainFunc(e) {
   kosztDzienny = prowizja / terminUmowny;
   kwotaZwrotu = kosztDzienny * (terminUmowny - terminFaktyczny) - czwrot;
   kwotaOdsetek = oblOdsetkiOpozn(terminPierwszyDzienOdsetk, kwotaZwrotu);
+  kwotaOdsetekNiePrzed = oblOdsetkiOpozn(terminPierwszyDzienOdsetkNieprzed, kwotaZwrotu);
   tblMsc = [
     "stycznia",
     "lutego",
@@ -140,11 +159,11 @@ function mainFunc(e) {
     "grudnia",
   ];
   termWymStr =
-    terminWymagalnosci.getDate().toString() +
+    terminWymagalnosciMinJed.getDate().toString() +
     " " +
-    tblMsc[terminWymagalnosci.getMonth()].toString() +
+    tblMsc[terminWymagalnosciMinJed.getMonth()].toString() +
     " " +
-    terminWymagalnosci.getFullYear().toString();
+    terminWymagalnosciMinJed.getFullYear().toString();
 
   todayStr =
     today.getDate().toString() +
