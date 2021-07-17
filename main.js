@@ -21,7 +21,6 @@ var Duration = luxon.Duration;
 
 const today = DateTime.now().startOf('day')
 const todayStr = today.setLocale('pl').toLocaleString(DateTime.DATE_FULL);
-const todayMinusThreeYears = today.minus({ year: 3 })
 const dzien8lipca2018 = new DateTime.fromISO("2018-07-08");
 
 const wrapper = document.querySelector(".wrapper"),
@@ -37,6 +36,22 @@ const tabOdsetek = [
   [new DateTime.local(2008, 12, 15), 0.13],
   [new DateTime.local(2005, 10, 15), 0.115],
 ];
+
+function oblTermPrzed(dWymagalnosci) {
+  const today = DateTime.now().startOf('day')
+  if ( dWymagalnosci > dzien8lipca2018 ) {
+    if ( dWymagalnosci.year >= today.minus({ year: 3 }).year ) {
+      console.log(dWymagalnosci.toISODate());
+      return dWymagalnosci;
+    } else {
+      console.log(today.minus({ year: 3 }).startOf('year').toISODate());
+      return today.minus({ year: 3 }).startOf('year');
+    }
+  } else {
+    console.log(today.minus({ year: 3 }).toISODate());
+    return today.minus({ year: 3 });
+  }
+}
 
 function oblOdsetkiOpozn(dWymagalnosci, kwota) {
   dKrocz = DateTime.now().startOf('day');
@@ -68,8 +83,10 @@ function mainFunc(e) {
   const terminOstZwrotu = dSplata.plus({days: 14}); 
   const terminOstZwrotuStr = terminOstZwrotu.setLocale('pl').toLocaleString(DateTime.DATE_FULL);
   const terminPierwszyDzienOdsetk = dSplata.plus({days: 15}); 
+  const terminPierwszyDzienOdsetkNiePrzed = oblTermPrzed(terminPierwszyDzienOdsetk);
+  const terminPierwszyDzienOdsetkNiePrzedStr = terminPierwszyDzienOdsetkNiePrzed.setLocale('pl').toLocaleString(DateTime.DATE_FULL);
 
-  const terminUmowny = Duration.fromMillis(dUmowa - dUruchom).as('days') // dUmowa - dUruchom
+  const terminUmowny = Duration.fromMillis(dUmowa - dUruchom).as('days').toFixed(0) // dUmowa - dUruchom
   const terminFaktyczny = Duration.fromMillis(dSplata - dUruchom).as('days') // dSplata - dUruchom
 
   //walidacja
@@ -85,6 +102,7 @@ function mainFunc(e) {
   kosztDzienny = prowizja / terminUmowny;
   kwotaZwrotu = kosztDzienny * (terminUmowny - terminFaktyczny) - czwrot;
   kwotaOdsetek = oblOdsetkiOpozn(terminPierwszyDzienOdsetk, kwotaZwrotu);
+  kwotaOdsetekNiePrzed = oblOdsetkiOpozn(terminPierwszyDzienOdsetkNiePrzed, kwotaZwrotu)
 
   //wyświetlenie sumy zwrotu
   document.getElementById("result").innerHTML = `<h2>Wynik</h2>
@@ -97,7 +115,7 @@ function mainFunc(e) {
         odsetki za opóźnienie od tej kwoty to: <strong>
         ${kwotaOdsetek.toFixed(2)} zł</strong>.</li>
         <li>Należne na dzień sporządzenia kalkulacji (${todayStr} r.) nieprzedawnione 
-        odsetki za opóźnienie to <strong>______ zł.</strong></li>
+        odsetki za opóźnienie (liczone od dnia ${terminPierwszyDzienOdsetkNiePrzedStr} r.) to <strong>${kwotaOdsetekNiePrzed.toFixed(2)} zł.</strong></li>
         <li>Całkowita kwota do zwrotu to: <strong>
         ${(kwotaOdsetek + kwotaZwrotu).toFixed(2)} 
         zł</strong>.</li></ol>`;
