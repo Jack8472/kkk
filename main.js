@@ -126,7 +126,8 @@ function mainFunc(e) {
         <li>Suma pozaodsetkowych kosztów kredytu to ${prowizja} zł. </li>
         <li>Kredyt został całkowicie spłacony w terminie ${terminFaktyczny} dni.</li>
         <li>Kredytodawca powinien Ci zwrócić kwotę <strong>${kwotaZwrotu.toFixed(2)} 
-        zł</strong> do dnia ${terminOstZwrotuStr} r. Roszczenie o zwrot przedawnia się z końcem dnia ${przedawnienieStr}.</li>
+        zł</strong> do dnia ${terminOstZwrotuStr} r. 
+        Roszczenie o zwrot przedawnia się z końcem dnia ${przedawnienieStr} r.</li>
         <li>Należne na dzień sporządzenia kalkulacji (${todayStr} r.) odsetki za opóźnienie to:</li>
         <ul>
         <li><strong>${kwotaOdsetek.toFixed(2)} zł</strong>,</li>
