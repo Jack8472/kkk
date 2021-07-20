@@ -54,6 +54,19 @@ function oblTermPrzed(dWymagalnosci) {
   }
 }
 
+function oblTermPrzedGlown(dWymagalnosci) {
+  const today = DateTime.now().startOf('day')
+  if (dWymagalnosci > dzien8lipca2018) {
+    przedawnienie = dWymagalnosci.plus({ year: 6 }).endOf('year')
+    console.log(przedawnienie.toISODate())
+    return przedawnienie
+  } else {
+    przedawnienie = dWymagalnosci.plus({ year: 10 })
+    console.log(przedawnienie.toISODate())
+    return przedawnienie
+  }
+}
+
 function oblOdsetkiOpozn(dWymagalnosci, kwota) {
   dKrocz = DateTime.now().startOf('day');
   dWymagalnosci = new DateTime.fromISO(dWymagalnosci).startOf('day');
@@ -86,6 +99,8 @@ function mainFunc(e) {
   const terminPierwszyDzienOdsetk = dSplata.plus({days: 15}); 
   const terminPierwszyDzienOdsetkNiePrzed = oblTermPrzed(terminPierwszyDzienOdsetk);
   const terminPierwszyDzienOdsetkNiePrzedStr = terminPierwszyDzienOdsetkNiePrzed.setLocale('pl').toLocaleString(DateTime.DATE_FULL);
+  const przedawnienie = oblTermPrzedGlown(terminPierwszyDzienOdsetk);
+  const przedawnienieStr = przedawnienie.setLocale('pl').toLocaleString(DateTime.DATE_FULL);
 
   const terminUmowny = Duration.fromMillis(dUmowa - dUruchom).as('days').toFixed(0) // dUmowa - dUruchom
   const terminFaktyczny = Duration.fromMillis(dSplata - dUruchom).as('days') // dSplata - dUruchom
@@ -111,12 +126,13 @@ function mainFunc(e) {
         <li>Suma pozaodsetkowych kosztów kredytu to ${prowizja} zł. </li>
         <li>Kredyt został całkowicie spłacony w terminie ${terminFaktyczny} dni.</li>
         <li>Kredytodawca powinien Ci zwrócić kwotę <strong>${kwotaZwrotu.toFixed(2)} 
-        zł</strong> do dnia ${terminOstZwrotuStr} r.</li>
-        <li>Należne na dzień sporządzenia kalkulacji (${todayStr} r.)
-        odsetki za opóźnienie od tej kwoty to: <strong>
-        ${kwotaOdsetek.toFixed(2)} zł</strong>.</li>
-        <li>Należne na dzień sporządzenia kalkulacji (${todayStr} r.) nieprzedawnione 
+        zł</strong> do dnia ${terminOstZwrotuStr} r. Roszczenie o zwrot przedawnia się z końcem dnia ${przedawnienieStr}.</li>
+        <li>Należne na dzień sporządzenia kalkulacji (${todayStr} r.) odsetki za opóźnienie to:</li>
+        <ul>
+        <li><strong>${kwotaOdsetek.toFixed(2)} zł</strong>,</li>
+        <li>z czego nieprzedawnione 
         odsetki za opóźnienie (liczone od dnia ${terminPierwszyDzienOdsetkNiePrzedStr} r.) to <strong>${kwotaOdsetekNiePrzed.toFixed(2)} zł.</strong></li>
+        </ul>
         <li>Całkowita kwota do zwrotu to: <strong>
         ${(kwotaOdsetek + kwotaZwrotu).toFixed(2)} 
         zł</strong>.</li></ol>`;
