@@ -132,9 +132,19 @@ function mainFunc(e) {
         <li>z czego nieprzedawnione 
         odsetki za opóźnienie (liczone od dnia ${terminPierwszyDzienOdsetkNiePrzedStr} r.) to <strong>${kwotaOdsetekNiePrzed.toFixed(2)} zł.</strong></li>
         </ul>
-        <li>Całkowita kwota do zwrotu to: <strong>
+        <li>Całkowita kwota do zwrotu 
+        <ul><li>
+        wliczając odsetki przedawnione to: <strong>
         ${(kwotaOdsetek + kwotaZwrotu).toFixed(2)} 
-        zł</strong>.</li></ol>`;
+        zł</strong>.
+        </li>
+        <li>
+        wliczajac wyłącznie odsetki nieprzedawnione to:<strong>
+        ${(kwotaOdsetekNiePrzed + kwotaZwrotu).toFixed(2)} 
+        zł</strong>.
+        </li>
+        </ul>
+        </ol>`;
 }
 
 document.addEventListener(
