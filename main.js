@@ -120,17 +120,18 @@ function mainFunc(e) {
 
   //wyświetlenie sumy zwrotu
   document.getElementById("result").innerHTML = `<h2>Wynik</h2>
+        Dzień kalkulacji: ${todayStr} r.
         <ol class=""><li>Udzielono Ci kredytu na okres ${terminUmowny} dni. <br />
         <li>Suma pozaodsetkowych kosztów kredytu to ${prowizja} zł. </li>
         <li>Kredyt został całkowicie spłacony w terminie ${terminFaktyczny} dni.</li>
         <li>Kredytodawca powinien Ci zwrócić kwotę <strong>${kwotaZwrotu.toFixed(2)} 
-        zł</strong> do dnia ${terminOstZwrotuStr} r. 
-        Roszczenie o zwrot przedawnia się z końcem dnia ${przedawnienieStr} r.</li>
-        <li>Należne na dzień sporządzenia kalkulacji (${todayStr} r.) odsetki za opóźnienie to:</li>
+        zł</strong> do dnia ${terminOstZwrotuStr} r.<br />
+        Roszczenie o zwrot tej kwoty <strong>przedawnia się z końcem dnia ${przedawnienieStr} r.</strong></li>
+        <li>Należne na dzień sporządzenia kalkulacji odsetki za opóźnienie to:</li>
         <ul>
         <li><strong>${kwotaOdsetek.toFixed(2)} zł</strong>,</li>
         <li>z czego nieprzedawnione 
-        odsetki za opóźnienie (liczone od dnia ${terminPierwszyDzienOdsetkNiePrzedStr} r.) to <strong>${kwotaOdsetekNiePrzed.toFixed(2)} zł.</strong></li>
+        odsetki za opóźnienie (liczone od dnia ${terminPierwszyDzienOdsetkNiePrzedStr} r.) to <strong>${kwotaOdsetekNiePrzed.toFixed(2)} zł</strong>.</li>
         </ul>
         <li>Całkowita kwota do zwrotu 
         <ul><li>
