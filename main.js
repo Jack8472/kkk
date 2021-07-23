@@ -38,21 +38,19 @@ const tabOdsetek = [
   [new DateTime.local(2005, 10, 15), 0.115],
 ];
 
-function oblTermPrzed(dWymagalnosci) {
-  const today = DateTime.now().startOf('day')
-  if ( dWymagalnosci > dzien8lipca2018 ) {
-    if ( dWymagalnosci.year >= today.minus({ year: 3 }).year ) {
-      console.log(dWymagalnosci.toISODate());
-      return dWymagalnosci;
-    } else {
-      console.log(today.minus({ year: 3 }).startOf('year').toISODate());
-      return today.minus({ year: 3 }).startOf('year');
-    }
+function oblTermPrzedOdstk(dWymagalnosci, today) { // pierwszy dzien nieprzedawnionych odsetek za opóźnienie
+  if (dWymagalnosci.year < today.minus({ year: 3 }).year) {
+    termin = today.minus({ year: 3 }).startOf("year");
   } else {
-    console.log(today.minus({ year: 3 }).toISODate());
-    return today.minus({ year: 3 });
+    termin = dWymagalnosci;
   }
+  if (termin <= dzien8lipca2018) {
+    termin = new DateTime.local(2018, 7, 9);
+  }
+  console.log(termin.toISODate())
+  return termin
 }
+
 
 function oblTermPrzedGlown(dWymagalnosci) {
   const today = DateTime.now().startOf('day')
@@ -67,12 +65,12 @@ function oblTermPrzedGlown(dWymagalnosci) {
   }
 }
 
-function oblOdsetkiOpozn(dWymagalnosci, kwota) {
+function oblOdsetkiOpozn(dPoczatkowa, kwota) {
   dKrocz = DateTime.now().startOf('day');
-  dWymagalnosci = new DateTime.fromISO(dWymagalnosci).startOf('day');
+  dPoczatkowa = new DateTime.fromISO(dPoczatkowa).startOf('day');
   let iterator = 0;
   let sumaOdsetek = (tabOdsetek[iterator][1] * kwota) / 365;
-  while (dKrocz > dWymagalnosci) {
+  while (dKrocz > dPoczatkowa) {
     dzienneOdsetki = (tabOdsetek[iterator][1] * kwota) / 365;
     sumaOdsetek = sumaOdsetek + dzienneOdsetki;
     dKrocz = dKrocz.minus({ days: 1 });
@@ -97,7 +95,7 @@ function mainFunc(e) {
   const terminOstZwrotu = dSplata.plus({days: 14}); 
   const terminOstZwrotuStr = terminOstZwrotu.setLocale('pl').toLocaleString(DateTime.DATE_FULL);
   const terminPierwszyDzienOdsetk = dSplata.plus({days: 15}); 
-  const terminPierwszyDzienOdsetkNiePrzed = oblTermPrzed(terminPierwszyDzienOdsetk);
+  const terminPierwszyDzienOdsetkNiePrzed = oblTermPrzedOdstk(terminPierwszyDzienOdsetk, today);
   const terminPierwszyDzienOdsetkNiePrzedStr = terminPierwszyDzienOdsetkNiePrzed.setLocale('pl').toLocaleString(DateTime.DATE_FULL);
   const przedawnienie = oblTermPrzedGlown(terminPierwszyDzienOdsetk);
   const przedawnienieStr = przedawnienie.setLocale('pl').toLocaleString(DateTime.DATE_FULL);
